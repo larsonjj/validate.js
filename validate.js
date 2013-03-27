@@ -119,7 +119,8 @@
             return function(event) {
                 try {
                     return that._validateForm(event) && (_onsubmit === undefined || _onsubmit());
-                } catch(e) {}
+                } catch(e) {
+                }
             };
         })(this);
     },
