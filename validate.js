@@ -333,16 +333,14 @@
         valid_emails: function(field) {
             var result = field.value.split(",");
 
-            if (field.value) {
                 for (var i = 0; i < result.length; i++) {
-                    if (!emailRegex.test(result[i])) {
+                    if (field.value && !emailRegex.test(result[i])) {
                         return false;
                     }
+                    else {
+                        return true;
+                    }
                 }
-            }
-            else {
-                return true;
-            }
         },
 
         min_length: function(field, length) {
@@ -350,9 +348,9 @@
                 if (!numericRegex.test(length)) {
                     return false;
                 }
-            }
-            else {
-                return (field.value.length >= parseInt(length, 10));
+                else {
+                    return (field.value.length >= parseInt(length, 10));
+                }
             }
         },
 
@@ -361,9 +359,9 @@
                 if (!numericRegex.test(length)) {
                     return false;
                 }
-            }
-            else {
-                return (field.value.length <= parseInt(length, 10));
+                else {
+                    return (field.value.length <= parseInt(length, 10));
+                }
             }
         },
 
@@ -372,9 +370,9 @@
                 if (!numericRegex.test(length)) {
                     return false;
                 }
-            }
-            else {
-                return (field.value.length === parseInt(length, 10));
+                else {
+                    return (field.value.length === parseInt(length, 10));
+                }
             }
         },
 
@@ -383,9 +381,9 @@
                 if (!decimalRegex.test(field.value)) {
                     return false;
                 }
-            }
-            else {
-                return (parseFloat(field.value) > parseFloat(param));
+                else {
+                    return (parseFloat(field.value) > parseFloat(param));
+                }
             }
         },
 
@@ -394,9 +392,9 @@
                 if (!decimalRegex.test(field.value)) {
                     return false;
                 }
-            }
-            else {
-                return (parseFloat(field.value) < parseFloat(param));
+                else {
+                    return (parseFloat(field.value) < parseFloat(param));
+                }
             }
         },
 
