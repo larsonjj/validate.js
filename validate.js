@@ -56,7 +56,7 @@
         emailRegex = /^[a-zA-Z0-9.!#$%&amp;'*+\-\/=?\^_`{|}~\-]+@[a-zA-Z0-9\-]+(?:\.[a-zA-Z0-9\-]+)*$/,
         alphaRegex = /^[a-z]+$/i,
         alphaNumericRegex = /^[a-z0-9]+$/i,
-        alphaDashRegex = /^[a-z0-9_-]+$/i,
+        alphaDashRegex = /^[a-z0-9_\-]+$/i
         naturalRegex = /^[0-9]+$/i,
         naturalNoZeroRegex = /^[1-9][0-9]*$/i,
         ipRegex = /^((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){3}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})$/i,
@@ -185,13 +185,13 @@
                     field.type = (element.length > 0) ? element[0].type : element.type;
                     field.value = attributeValue(element, 'value');
                     field.checked = attributeValue(element, 'checked');
+
+                    /*
+                    * Run through the rules for each field.
+                    */
+
+                    this._validateField(field);
                 }
-
-                /*
-                 * Run through the rules for each field.
-                 */
-
-                this._validateField(field);
             }
         }
 
@@ -202,9 +202,9 @@
         if (this.errors.length > 0) {
             if (event && event.preventDefault) {
                 event.preventDefault();
-            } else {
-                // IE6 doesn't pass in an event parameter so return false
-                return false;
+            } else if (event) {
+                // IE uses the global event variable
+                event.returnValue = false;
             }
         }
 
